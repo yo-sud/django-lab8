@@ -1,0 +1,128 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <meta name="description" content="Aula Nexo: estudia, practica y sigue tu avance en tus evaluaciones.">
+  <title>Aula Nexo · Aprende a tu ritmo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'quiz/css/app.css' %}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <a class="brand" href="/" aria-label="Aula Nexo, inicio">
+        <span class="brand-mark"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 10.5 18 5l13 5.5-13 5.4L5 10.5Z"/><path d="M10 13v8c4.9 4.3 11.1 4.3 16 0v-8M31 11v10"/><circle cx="31" cy="24" r="2"/></svg></span>
+        <span><strong>Aula Nexo</strong><small>APRENDE A TU RITMO</small></span>
+      </a>
+
+      <div class="workspace-label">TU ESPACIO</div>
+      <nav class="side-nav">
+        <a class="nav-link is-active" href="#inicio"><span class="nav-icon">⌂</span> Inicio</a>
+        <a class="nav-link" href="#examenes"><span class="nav-icon">▤</span> Exámenes <span class="nav-count" id="navExamCount">—</span></a>
+        <a class="nav-link" href="#progreso"><span class="nav-icon">◔</span> Mi progreso</a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="weekly-card">
+        <div class="weekly-orbit">✦</div>
+        <span class="eyebrow">UN PASO A LA VEZ</span>
+        <strong>La constancia<br>también se practica.</strong>
+        <span class="weekly-caption">Hoy es un buen día para aprender algo nuevo.</span>
+      </div>
+      <button class="account-button" id="accountButton" type="button">
+        <span class="avatar" id="accountAvatar">A</span>
+        <span class="account-copy"><strong id="accountName">Invitado</strong><small id="accountStatus">Conecta tu cuenta</small></span>
+        <span class="account-menu">•••</span>
+      </button>
+    </aside>
+
+    <main class="main-area" id="inicio">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Mi espacio</span><span class="crumb-slash">/</span><strong id="pageBreadcrumb">Inicio</strong></div>
+        <div class="topbar-actions">
+          <label class="global-search"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Buscar un examen" aria-label="Buscar exámenes"><kbd>⌘ K</kbd></label>
+          <button class="icon-button notification-button" type="button" aria-label="Notificaciones">♧<i></i></button>
+          <button class="profile-button" id="profileButton" type="button"><span class="avatar avatar-small">A</span><span id="topProfileName">Invitado</span><span class="chevron">⌄</span></button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="welcome-row">
+          <div><p class="date-line" id="todayLabel">TU ESPACIO DE APRENDIZAJE</p><h1>Hola, <span id="greetingName">estudiante</span> <span class="wave">✳</span></h1><p class="welcome-subtitle">Un poco de práctica hoy te acerca a lo que quieres lograr.</p></div>
+          <button class="button button-outline" id="connectButton" type="button"><span class="button-symbol">↗</span><span id="connectButtonText">Conectar cuenta</span></button>
+        </section>
+
+        <section class="hero-card" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <div class="hero-pill"><span class="pill-spark">✦</span> TU SIGUIENTE GRAN IDEA EMPIEZA AQUÍ</div>
+            <h2 id="heroTitle">Aprender algo nuevo<br><span>cambia lo que viene.</span></h2>
+            <p>Explora tus evaluaciones, pon a prueba tus conocimientos y celebra cada avance.</p>
+            <a class="button button-light" href="#examenes">Explorar mis exámenes <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-sun"></div><div class="art-star star-one">✳</div><div class="art-star star-two">✦</div>
+            <div class="book book-back"></div><div class="book book-front"><div class="book-page page-left"><span class="page-line long"></span><span class="page-line"></span><span class="page-line short"></span><span class="page-doodle">⌁</span></div><div class="book-page page-right"><span class="page-shape"></span><span class="page-line long"></span><span class="page-line short"></span><span class="page-line"></span></div></div>
+            <div class="art-leaf leaf-left">❋</div><div class="art-leaf leaf-right">❋</div>
+            <div class="floating-note"><span>✦</span><strong>¡Vas muy bien!</strong><small>Un ejercicio a la vez</small></div>
+          </div>
+        </section>
+
+        <section class="stat-grid" aria-label="Resumen de aprendizaje">
+          <article class="stat-card"><span class="stat-icon icon-lilac">▤</span><div><span class="stat-label">Exámenes disponibles</span><strong id="examStat">—</strong><small>Listos para explorar</small></div><span class="stat-trend">↗</span></article>
+          <article class="stat-card"><span class="stat-icon icon-peach">✎</span><div><span class="stat-label">Preguntas para practicar</span><strong id="questionStat">—</strong><small>En todos tus exámenes</small></div><span class="stat-trend">↗</span></article>
+          <article class="stat-card progress-stat"><span class="stat-icon icon-mint">✦</span><div><span class="stat-label">Tu mejor resultado</span><strong id="bestScore">—</strong><small id="bestScoreCaption">Tu progreso empieza hoy</small></div><span class="stat-trend">↗</span></article>
+        </section>
+
+        <section class="learning-section" id="examenes">
+          <div class="section-heading"><div><p class="eyebrow">TU BIBLIOTECA</p><h2>Elige qué quieres practicar</h2><p class="section-description">Tus exámenes, organizados para que avances con claridad.</p></div><a href="#examenes" class="text-link" id="refreshLink">Actualizar lista <span>↻</span></a></div>
+          <div class="filter-row"><div class="filter-tabs" role="tablist" aria-label="Filtrar exámenes"><button class="filter-tab is-selected" data-filter="all" type="button">Todos <span id="allExamCount">0</span></button><button class="filter-tab" data-filter="available" type="button">Para practicar</button></div><span class="sort-label">Ordenados por <strong>disponibilidad</strong> <span>⌄</span></span></div>
+          <div class="exam-grid" id="examGrid" aria-live="polite"><div class="loading-card"><span class="spinner"></span><span>Cargando tus exámenes...</span></div></div>
+          <div class="empty-state hidden" id="emptyState"><div class="empty-illustration">▧</div><strong id="emptyTitle">Aún no hay exámenes</strong><p id="emptyMessage">Conecta tu cuenta para cargar el material de estudio.</p><button class="button button-outline" id="emptyAction" type="button">Conectar cuenta</button></div>
+        </section>
+
+        <section class="progress-section" id="progreso">
+          <div class="progress-intro"><div class="progress-badge">✦</div><div><p class="eyebrow">CELEBRA CADA AVANCE</p><h2>El progreso se construye<br>práctica a práctica.</h2><p>Completa una evaluación y aquí podrás ver cómo vas avanzando.</p><button class="text-link" id="viewHistoryButton" type="button">Ver mis resultados <span>→</span></button></div></div>
+          <div class="progress-chart" aria-label="Gráfico decorativo de progreso"><div class="chart-top"><span>Tu ritmo de aprendizaje</span><span class="chart-period">ÚLTIMOS INTENTOS</span></div><div class="chart-bars"><i style="--height:31%"></i><i style="--height:49%"></i><i style="--height:42%"></i><i style="--height:69%"></i><i style="--height:57%"></i><i style="--height:84%"></i><i class="bar-current" style="--height:71%"></i></div><div class="chart-foot"><span>Empieza con tu primera práctica</span><strong id="chartSummary">Tu camino comienza hoy ✦</strong></div></div>
+        </section>
+
+        <footer class="site-footer"><span>© 2026 Aula Nexo</span><span>Aprender juntos nos lleva más lejos <span class="footer-heart">♥</span></span><a href="/api/docs/" target="_blank" rel="noreferrer">Documentación API</a></footer>
+      </div>
+    </main>
+  </div>
+
+  <section class="quiz-screen hidden" id="quizScreen" aria-live="polite">
+    <div class="quiz-topbar"><a href="/" class="brand brand-dark"><span class="brand-mark"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 10.5 18 5l13 5.5-13 5.4L5 10.5Z"/><path d="M10 13v8c4.9 4.3 11.1 4.3 16 0v-8M31 11v10"/><circle cx="31" cy="24" r="2"/></svg></span><span><strong>Aula Nexo</strong><small>APRENDE A TU RITMO</small></span></a><button class="text-link" id="exitQuizButton" type="button">← Volver a mis exámenes</button></div>
+    <div class="quiz-container"><div class="quiz-meta"><span class="eyebrow">MODO PRÁCTICA</span><span class="quiz-count" id="quizCount">0 preguntas</span></div><h1 id="quizTitle">Tu práctica</h1><p class="quiz-subtitle" id="quizSubtitle">Lee con calma y elige la respuesta que consideres correcta.</p><div class="quiz-progress-track"><div class="quiz-progress-fill" id="quizProgressFill"></div></div><div class="question-list" id="questionDeck"></div><div class="quiz-actions"><span id="answeredCount">0 respuestas seleccionadas</span><button class="button button-primary" id="submitQuizButton" type="button">Revisar mis respuestas <span>→</span></button></div><div class="result-card hidden" id="resultCard"></div></div>
+  </section>
+
+  <dialog class="profile-dialog" id="profileDialog">
+    <form method="dialog">
+      <button class="dialog-close" value="close" aria-label="Cerrar perfil">×</button>
+      <div class="profile-dialog-avatar" id="profileDialogInitial">E</div>
+      <p class="eyebrow">TU ESPACIO PERSONAL</p>
+      <h2 id="profileDialogName">Estudiante</h2>
+      <p class="dialog-copy" id="profileDialogStatus">Conecta tu cuenta para consultar tus exámenes.</p>
+      <div class="profile-session"><span class="status-dot" id="profileStatusDot"></span><span id="profileSessionText">No hay una sesión activa.</span></div>
+      <button class="button button-primary profile-connect" id="profileConnectButton" type="button">Conectar cuenta <span>→</span></button>
+      <button class="button button-outline profile-disconnect" id="profileDisconnectButton" type="button">Desconectar cuenta</button>
+    </form>
+  </dialog>
+
+  <dialog class="token-dialog" id="tokenDialog">
+    <form method="dialog" id="tokenForm">
+      <button class="dialog-close" value="cancel" aria-label="Cerrar">×</button>
+      <div class="dialog-icon">✦</div><p class="eyebrow">ACCESO SEGURO</p><h2>Conecta tu espacio</h2><p class="dialog-copy">Pega el token de acceso que generaste en tu terminal. Se guardará solo en este navegador para que puedas consultar tus exámenes.</p>
+      <label for="tokenInput">Token de acceso</label><input id="tokenInput" type="password" autocomplete="off" placeholder="Pega aquí tu token" required><label class="show-token"><input id="showToken" type="checkbox"> Mostrar token</label>
+      <p class="dialog-error hidden" id="tokenError" role="alert"></p><button class="button button-primary dialog-submit" id="tokenSubmit" value="connect">Conectar de forma segura <span>→</span></button><button class="dialog-help" id="tokenHelp" type="button">¿Dónde encuentro mi token?</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="{% static 'quiz/js/app.js' %}?v=profile-fix-20261018b" defer></script>
+</body>
+</html>

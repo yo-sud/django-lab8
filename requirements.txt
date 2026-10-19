@@ -1,0 +1,5 @@
+Django>=5.2,<7.0
+djangorestframework>=3.17,<3.19
+django-filter>=25.1,<26.0
+drf-spectacular>=0.28
+requests>=2.32
